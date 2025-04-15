@@ -33,7 +33,9 @@ const Trip = require('../models/trips');
 
 // --> route POST to find all trips (departure and arrival) and for a specific date (YYYY-MM-DD)
 router.post('/', (req, res) => {
-  const { departure, arrival, date } = req.body;
+  const departure = { $regex: new RegExp(req.body.departure, 'i')};
+  const arrival = { $regex: new RegExp(req.body.arrival, 'i')};
+  const date = req.body.date;
 
   // Convertir la date 'YYYY-MM-DD' en objets Date pour les bornes
   const [year, month, day] = date.split('-');
