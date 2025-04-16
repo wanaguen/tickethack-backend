@@ -7,6 +7,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tripsRouter = require('./routes/trips');
 var cartsRouter = require('./routes/carts');
+var cartsRouterV2 = require('./routes/cartsV2');
+var bookingsRouter = require('./routes/bookings');
+
 
 var app = express();
 
@@ -23,5 +26,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/trips', tripsRouter);
 app.use('/carts', cartsRouter);
+app.use('/cartsV2', cartsRouterV2);
+app.use('/bookings', bookingsRouter);
+
 
 module.exports = app;
