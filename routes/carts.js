@@ -3,7 +3,7 @@ var router = express.Router();
 
 require('../models/connection');
 
-const Trip = require('../models/trips');
+// const Trip = require('../models/trips');
 const Cart = require('../models/carts');
 
 
@@ -14,15 +14,15 @@ router.post('/', (req, res) => {
     const date = req.body.date
     const price = req.body.price
   
-    const newTrip = new Trip({
+    const newCart = new Cart({
       departure: departure,
       arrival: arrival,
       date: date,
       price: price,
 
     });
-    newTrip.save().then(() => {
-     Trip.find().then(data => {
+    newCart.save().then(() => {
+     Cart.find().then(data => {
         res.json({ tripCart: data });
       });
     }
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
 
 // Route pour supprimer un document dans notre base cart
 router.delete('/', (req, res) => {
-  Trip.deleteOne({ _id: req.body.id }).then(data => {
+  Cart.deleteOne({ _id: req.body.id }).then(data => {
     if (data === undefined) {
         res.json({ result: false, error: 'trajet non trouvé' });
     }
