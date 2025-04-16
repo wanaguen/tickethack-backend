@@ -7,7 +7,7 @@ require('../models/connection');
 const Cart = require('../models/carts');
 
 
-// --> commming from orientexpress2
+// --> route to add a trip in Cart collection
 router.post('/', (req, res) => {
     const departure = req.body.departure
     const arrival = req.body.arrival
@@ -28,6 +28,13 @@ router.post('/', (req, res) => {
     }
     )});
 
+
+// --> route to display all carts
+router.get('/', (req, res) => {
+  Cart.find().then(data => {
+       res.json({ allCarts: data });
+     });
+ });
 
 
 // Route pour supprimer un document dans notre base cart
