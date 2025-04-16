@@ -30,10 +30,13 @@ router.post('/', (req, res) => {
 
 
 
-//--> code comming from orientexpress2
+// Route pour supprimer un document dans notre base cart
 router.delete('/', (req, res) => {
-  Trip.deleteMany().then(data => {
-    res.json({ allTrips: data });
+  Trip.deleteOne({ _id: req.body.id }).then(data => {
+    if (data === undefined) {
+        res.json({ result: false, error: 'trajet non trouvé' });
+    }
+    res.json({ result: true });
 });
 });
 
